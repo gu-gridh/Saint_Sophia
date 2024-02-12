@@ -1,0 +1,25 @@
+1:
+    - Create Django Project
+    django-admin startproject --optinal-name
+2:
+    - Create requirments and deployment files
+3:
+    - Create abstract model inside the main project 
+        django-admin startapp abstract
+        Setup abstract models (    
+            class Meta:
+            abstract = True)
+        Setup other modules like serializers, view and etc.
+4:
+    - Setup setting
+5:
+    - Setup database config
+6:
+    Start implementing applications 
+7:
+    To run the project:
+    python manage.py createsuperuser
+
+
+
+    
