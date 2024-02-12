@@ -15,8 +15,27 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from django.conf.urls.i18n import i18n_patterns
+from django.contrib import admin
+from django.utils.translation import gettext_lazy as _
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path("i18n/", include("django.conf.urls.i18n")),
 ]
+
+apps = [path('', include(f"apps.{app['name']}.urls")) for app in settings.APPS_LOCAL]
+
+urlpatterns += i18n_patterns(
+    # Add first page's url for the project.
+    # path('', ),
+    path('admin/', admin.site.urls), 
+    *apps,
+    prefix_default_language=False
+)
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
