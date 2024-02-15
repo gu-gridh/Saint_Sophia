@@ -1,0 +1,3 @@
+[submodule "saintsophia-backend/apps/inscriptions"]
+	path = saintsophia-backend/apps/inscriptions
+	url = https://github.com/gu-gridh/inscriptions.git
