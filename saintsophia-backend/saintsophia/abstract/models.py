@@ -18,7 +18,7 @@ TIFF_KWARGS = {
     "tile": True, 
     "pyramid": True, 
     # "compression": 'jpeg', 
-    "Q": 89, 
+    "Q": 256, 
     "tile_width": 256, 
     "tile_height": 256
 }
