@@ -12,6 +12,8 @@ import uuid
 import os
 import pyvips
 
+Image.MAX_IMAGE_PIXELS = None
+
 TIFF_KWARGS = {
     "tile": True, 
     "pyramid": True, 
