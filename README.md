@@ -11,4 +11,4 @@ https://saintsophia.dh.gu.se/api/inscriptions/geojson/panel/
 
 ## Datasets
 
-Under construction. 
+Under construction.
