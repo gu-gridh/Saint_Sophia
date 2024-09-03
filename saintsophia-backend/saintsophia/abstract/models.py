@@ -19,8 +19,8 @@ TIFF_KWARGS = {
     "pyramid": True, 
     # "compression": 'jpeg', 
     "Q": 100, 
-    "tile_width": 1024, 
-    "tile_height": 1024
+    "tile_width": 512, 
+    "tile_height": 512
 }
 
 DEFAULT_FIELDS  = ['created_at', 'updated_at', 'published']
@@ -87,12 +87,10 @@ def save_tiled_pyramid_tif(obj, path=IIIFFileStorage().location):
 
     # Get the original image as a Pillow object before saving
     image_object = Image.open(obj.file.open())
-    # image = pyvips.Image.new_from_array(image_object)
-    image = pyvips.Image.new_from_file(image_object, access='sequential')
-
+    image = pyvips.Image.new_from_array(image_object)
                 
     # Create temporary file
-    image.tiffsave(tmp_path, bigtiff=True, **TIFF_KWARGS)
+    image.tiffsave(tmp_path, **TIFF_KWARGS)
 
     # Prepare saving the new IIIF file
     with open(tmp_path, 'rb') as f:
