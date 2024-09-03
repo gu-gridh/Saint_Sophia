@@ -17,7 +17,7 @@ Image.MAX_IMAGE_PIXELS = None
 TIFF_KWARGS = {
     "tile": True, 
     "pyramid": True, 
-    "compression": 'jpeg', 
+    # "compression": 'jpeg', 
     "Q": 100, 
     "tile_width": 1024, 
     "tile_height": 1024
