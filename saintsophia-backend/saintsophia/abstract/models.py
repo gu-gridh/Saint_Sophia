@@ -80,15 +80,18 @@ def save_tiled_pyramid_tif(obj, path=IIIFFileStorage().location):
 
 
     # When updating the file, remove the iiif_file
-    # print(out_path)
     if os.path.isfile(out_path):
         os.remove(out_path)
         obj.iiif_file.delete(False) # Do not yet save the image deletion
 
+    obj_path =os.path.join(path, get_original_path(obj, obj.file.name))
+
     # Get the original image as a Pillow object before saving
-    image_object = Image.open(obj.file.open())
-    image = pyvips.Image.new_from_array(image_object)
-                
+    # image_object = Image.open(obj.file.open())
+    # image = pyvips.Image.new_from_array(image_object)
+ 
+    image = pyvips.Image.new_from_file(obj_path, access='sequential')
+
     # Create temporary file
     image.tiffsave(tmp_path, **TIFF_KWARGS)
 
