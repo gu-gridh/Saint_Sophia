@@ -89,7 +89,7 @@ def save_tiled_pyramid_tif(obj, path=IIIFFileStorage().location):
     image_object = Image.open(obj.file.open())
     image = pyvips.Image.new_from_array(image_object)
  
-    image = pyvips.Image.new_from_file(obj_path, access='sequential')
+    # image = pyvips.Image.new_from_file(obj_path, access='sequential')
     # Create temporary file
     image.tiffsave(tmp_path, **TIFF_KWARGS)
 
