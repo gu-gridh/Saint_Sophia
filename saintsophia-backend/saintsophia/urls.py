@@ -33,6 +33,7 @@ urlpatterns += i18n_patterns(
     # Add first page's url for the project.
     # path('', ),
     path('admin/', admin.site.urls), 
+    path('api/', include("apps.inscriptions.urls")),
     *apps,
     prefix_default_language=False
 )
