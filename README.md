@@ -1,6 +1,36 @@
-# Inscriptions of Saint Sophia -- backend
+# Inscriptions of Saint Sophia
 
 This is the repository for the Django application of the Saint Sophia's Inscriptions project, led by Gunnar Almevik and Jonathan Westin at University of Gothenburg. The backend is developed as an initial clone of the [Diana database coordination solution](https://github.com/gu-gridh/diana-backend), developed by GRIDH. The project frontend is developed as a part of the Multimodal Map project, a repository of user interface modules developed by GRIDH specifically aimed at spatio-temporal visualisations.
+
+# Main contributors
+
+#####Project lead:
+Gunnar Almevik (University of Gothenburg).
+Jonathan Westin (University of Gothenburg).
+
+#####Data collection, registration and processing:
+Sergii Trofymchuk (National Conservation Area “St. Sophia of Kyiv”).
+Alexander Ganshin (National Conservation Area “St. Sophia of Kyiv”).
+Oksana Kovalska (National Conservation Area “St. Sophia of Kyiv”).
+Sviatoslav Petryk (National Conservation Area “St. Sophia of Kyiv”).
+
+Fedir Androshchuk (National Museum of the History of Ukraine).
+Anastasiia Diachenko (National Museum of the History of Ukraine).
+Mariia Prokopenko (National Museum of the History of Ukraine).
+Maryna Lutsyk (National Museum of the History of Ukraine).
+
+Gunnar Almevik (University of Gothenburg).
+Jonathan Westin (University of Gothenburg).
+Ashely Green (University of Gothenburg).
+Lucie Urbanová (Czech Republic).
+
+#####Development:
+Jonathan Westin (University of Gothenburg).
+Tristan Bridge (University of Gothenburg).
+Matteo Tomasini (University of Gothenburg).
+Ashely Green (University of Gothenburg).
+Aram Karimi (University of Gothenburg).
+
 
 ## Database and API documentation
 
