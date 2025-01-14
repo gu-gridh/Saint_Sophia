@@ -5,8 +5,8 @@ This is the repository for the <a href="https://www.gu.se/en/research/digital-do
 ## Project Team
 
 ### Project lead
-Gunnar Almevik (University of Gothenburg).  
-Jonathan Westin (University of Gothenburg).
+<a href="mailto:gunnar.almevik@conservation.gu.se">Gunnar Almevik</a> (University of Gothenburg).  
+<a href="mailto:jonathan.westin@lir.gu.se">Jonathan Westin (University of Gothenburg).
 
 ### Data collection, registration and processing
 Sergii Trofymchuk (National Conservation Area “St. Sophia of Kyiv”).  
