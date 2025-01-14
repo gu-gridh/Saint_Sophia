@@ -32,6 +32,7 @@ Ashely Green (University of Gothenburg).
 Aram Karimi (University of Gothenburg).    
 
 
+
 ## Database and API documentation
 
 The backend solution upon which the Saint Sophia's Inscriptions portal is developed allows for consistent data input, and facilitates the interaction of end-users with the data shown in the frontend. To make the data open and reusable, Inscriptions of Saint Sophia makes available compliant REST APIs (including GeoJSON API), generated through the Django REST framework. These are the same APIs the projects's own frontend relies upon. Below follows a description of the APIs. [under construction]
