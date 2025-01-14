@@ -4,11 +4,11 @@ This is the repository for the Django application of the Saint Sophia's Inscript
 
 # Main contributors
 
-### Project lead:
+### Project lead
 Gunnar Almevik (University of Gothenburg).  
 Jonathan Westin (University of Gothenburg).
 
-### Data collection, registration and processing:
+### Data collection, registration and processing
 Sergii Trofymchuk (National Conservation Area “St. Sophia of Kyiv”).  
 Alexander Ganshin (National Conservation Area “St. Sophia of Kyiv”).  
 Oksana Kovalska (National Conservation Area “St. Sophia of Kyiv”).  
@@ -24,12 +24,12 @@ Jonathan Westin (University of Gothenburg).
 Ashely Green (University of Gothenburg).  
 Lucie Urbanová (Czech Republic).  
 
-### Development:
+### Development
 Jonathan Westin (University of Gothenburg).  
 Tristan Bridge (University of Gothenburg).  
 Matteo Tomasini (University of Gothenburg.  
 Ashely Green (University of Gothenburg).  
-Aram Karimi (University of Gothenburg).  
+Aram Karimi (University of Gothenburg).    
 
 
 ## Database and API documentation
