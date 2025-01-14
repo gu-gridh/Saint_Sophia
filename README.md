@@ -2,7 +2,7 @@
 
 This is the repository for the Saint Sophia's Inscriptions project, led by Gunnar Almevik and Jonathan Westin at University of Gothenburg. The backend is developed as an initial clone of the [Diana database coordination solution](https://github.com/gu-gridh/diana-backend), developed by GRIDH. The project frontend is developed as a part of the <a href="https://github.com/gu-gridh/multimodal-map#multimodal-map">Multimodal Map</a> project, a repository of user interface modules developed by GRIDH specifically aimed at spatio-temporal visualisations. The data explorer tools are developed as part of the <a href="https://github.com/gu-gridh/multimodal-viewer#multimodal-viewer">Multimodal Viewer</a> project.
 
-## Team members
+## Project Team
 
 ### Project lead
 Gunnar Almevik (University of Gothenburg).  
