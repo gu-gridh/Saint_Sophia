@@ -5,31 +5,31 @@ This is the repository for the <a href="https://www.gu.se/en/research/digital-do
 ## Project Team
 
 ### Project lead
-<a href="mailto:gunnar.almevik@conservation.gu.se">Gunnar Almevik</a> (University of Gothenburg).  
-<a href="mailto:jonathan.westin@lir.gu.se">Jonathan Westin</a>  (University of Gothenburg).
+<a href="mailto:gunnar.almevik@conservation.gu.se">**Gunnar Almevik**</a> (University of Gothenburg).  
+<a href="mailto:jonathan.westin@lir.gu.se">**Jonathan Westin**</a>  (University of Gothenburg).
 
 ### Data collection, registration and processing
 **Sergii Trofymchuk** (National Conservation Area “St. Sophia of Kyiv”).  
-Alexander Ganshin (National Conservation Area “St. Sophia of Kyiv”).  
-Oksana Kovalska (National Conservation Area “St. Sophia of Kyiv”).  
-Sviatoslav Petryk (National Conservation Area “St. Sophia of Kyiv”).  
+**Alexander Ganshin** (National Conservation Area “St. Sophia of Kyiv”).  
+**Oksana Kovalska** (National Conservation Area “St. Sophia of Kyiv”).  
+**Sviatoslav Petryk** (National Conservation Area “St. Sophia of Kyiv”).  
 
-Fedir Androshchuk (National Museum of the History of Ukraine).  
-Anastasiia Diachenko (National Museum of the History of Ukraine).  
-Mariia Prokopenko (National Museum of the History of Ukraine).  
-Maryna Lutsyk (National Museum of the History of Ukraine).  
+**Fedir Androshchuk** (National Museum of the History of Ukraine).  
+**Anastasiia Diachenko** (National Museum of the History of Ukraine).  
+**Mariia Prokopenko** (National Museum of the History of Ukraine).  
+**Maryna Lutsyk** (National Museum of the History of Ukraine).  
 
-Gunnar Almevik (University of Gothenburg).  
-Jonathan Westin (University of Gothenburg).  
-Ashely Green (University of Gothenburg).  
-Lucie Urbanová (Czech Republic).  
+**Gunnar Almevik** (University of Gothenburg).  
+**Jonathan Westin** (University of Gothenburg).  
+**Ashely Green** (University of Gothenburg).  
+**Lucie Urbanová** (Czech Republic).  
 
 ### Development
-Jonathan Westin (University of Gothenburg).  
-Tristan Bridge (University of Gothenburg).  
-Matteo Tomasini (University of Gothenburg.  
-Ashely Green (University of Gothenburg).  
-Aram Karimi (University of Gothenburg).    
+**Jonathan Westin** (University of Gothenburg).  
+**Tristan Bridge** (University of Gothenburg).  
+**Matteo Tomasini** (University of Gothenburg.  
+**Ashely Green** (University of Gothenburg).  
+**Aram Karimi** (University of Gothenburg).    
 
 
 
