@@ -9,7 +9,7 @@ This is the repository for the <a href="https://www.gu.se/en/research/digital-do
 <a href="mailto:jonathan.westin@lir.gu.se">Jonathan Westin</a>  (University of Gothenburg).
 
 ### Data collection, registration and processing
-Sergii Trofymchuk (National Conservation Area “St. Sophia of Kyiv”).  
+**Sergii Trofymchuk** (National Conservation Area “St. Sophia of Kyiv”).  
 Alexander Ganshin (National Conservation Area “St. Sophia of Kyiv”).  
 Oksana Kovalska (National Conservation Area “St. Sophia of Kyiv”).  
 Sviatoslav Petryk (National Conservation Area “St. Sophia of Kyiv”).  
