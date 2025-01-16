@@ -25,11 +25,11 @@ This is the repository for the <a href="https://www.gu.se/en/research/digital-do
 **Lucie Urbanová** (Czech Republic).  
 
 ### Development
-**Jonathan Westin** (University of Gothenburg).  
-**Tristan Bridge** (University of Gothenburg).  
-**Matteo Tomasini** (University of Gothenburg.  
-**Ashely Green** (University of Gothenburg).  
-**Aram Karimi** (University of Gothenburg).    
+**Jonathan Westin**, frontend development (University of Gothenburg).  
+**Tristan Bridge**, frontend development (University of Gothenburg).  
+**Matteo Tomasini**, backend development (University of Gothenburg.  
+**Ashely Green**, frontend development (University of Gothenburg).  
+**Aram Karimi**, backend development (University of Gothenburg).    
 
 
 
