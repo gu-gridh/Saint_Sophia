@@ -5,8 +5,8 @@ This is the repository for the <a href="https://www.gu.se/en/research/digital-do
 ## Project Team
 
 ### Project lead
-<a href="https://www.gu.se/om-universitetet/hitta-person/gunnaralmevik">**Professor Gunnar Almevik**</a> (University of Gothenburg).  
-<a href="https://www.gu.se/om-universitetet/hitta-person/jonathanwestin">**Associate Professor Jonathan Westin**</a>  (University of Gothenburg).
+<a href="https://www.gu.se/om-universitetet/hitta-person/gunnaralmevik">**Gunnar Almevik**</a> (University of Gothenburg).  
+<a href="https://www.gu.se/om-universitetet/hitta-person/jonathanwestin">**Jonathan Westin**</a>  (University of Gothenburg).
 
 ### Data collection, registration and processing
 **Sergii Trofymchuk** (National Conservation Area “St. Sophia of Kyiv”).  
@@ -25,11 +25,11 @@ This is the repository for the <a href="https://www.gu.se/en/research/digital-do
 **Lucie Urbanová** (Czech Republic).  
 
 ### Development
-**Jonathan Westin**, frontend development (University of Gothenburg).  
-**Tristan Bridge**, frontend development (University of Gothenburg).  
-**Matteo Tomasini**, backend development (University of Gothenburg.  
-**Ashely Green**, frontend development (University of Gothenburg).  
-**Aram Karimi**, backend development (University of Gothenburg).    
+**Jonathan Westin**, frontend development (GRIDH).  
+**Tristan Bridge**, frontend development (GRIDH).  
+**Matteo Tomasini**, backend development (GRIDH).  
+**Ashely Green**, frontend development (GRIDH).  
+**Aram Karimi**, backend development (GRIDH).    
 
 
 
