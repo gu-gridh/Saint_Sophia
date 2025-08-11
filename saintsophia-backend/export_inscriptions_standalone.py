@@ -27,50 +27,23 @@ from django.db.models import Q
 from apps.inscriptions.models import Inscription
 
 
-def export_inscriptions_csv(output_file=None, include_empty_text_fields=False):
+def export_inscriptions_csv(output_file=None):
     """
-    Export inscriptions with graffiti data to CSV.
+    Export inscriptions with transcription data to CSV.
     
     Args:
         output_file (str): Output CSV file path
-        include_empty_text_fields (bool): Include inscriptions with empty text fields
-                                        but with related objects (mentioned_person, inscriber)
     """
     
     # Generate default filename with timestamp if not provided
     if not output_file:
         timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-        output_file = f'inscriptions_with_graffiti_data_{timestamp}.csv'
+        output_file = f'inscriptions_with_transcription_{timestamp}.csv'
 
     print(f"Exporting inscriptions to: {output_file}")
 
-    # Build query to filter inscriptions with non-empty graffiti data fields
-    # Graffiti data fields from the model:
-    # - transcription (RichTextField)
-    # - interpretative_edition (RichTextField) 
-    # - romanisation (RichTextField)
-    # - mentioned_person (ManyToManyField)
-    # - inscriber (ForeignKey)
-    # - translation_eng (RichTextField)
-    # - translation_ukr (RichTextField)
-    # - comments_eng (RichTextField)
-    # - comments_ukr (RichTextField)
-
-    query = Q()
-    
-    # Add conditions for text fields (not null and not empty string)
-    text_fields = [
-        'transcription', 'interpretative_edition', 'romanisation',
-        'translation_eng', 'translation_ukr', 'comments_eng', 'comments_ukr'
-    ]
-    
-    for field in text_fields:
-        query |= Q(**{f'{field}__isnull': False}) & ~Q(**{f'{field}__exact': ''})
-
-    # Add conditions for related fields if include_empty_text_fields is True
-    if include_empty_text_fields:
-        query |= Q(mentioned_person__isnull=False)
-        query |= Q(inscriber__isnull=False)
+    # Build query to filter inscriptions with non-empty transcription field only
+    query = Q(transcription__isnull=False) & ~Q(transcription__exact='')
 
     # Get inscriptions matching the criteria
     inscriptions = Inscription.objects.filter(query).distinct().prefetch_related(
@@ -79,7 +52,7 @@ def export_inscriptions_csv(output_file=None, include_empty_text_fields=False):
         'condition', 'alignment', 'extra_alphabetical_sign', 'bibliography', 'author'
     )
 
-    print(f'Found {inscriptions.count()} inscriptions with graffiti data')
+    print(f'Found {inscriptions.count()} inscriptions with transcription data')
 
     # Define CSV headers
     headers = [
@@ -165,26 +138,20 @@ def export_inscriptions_csv(output_file=None, include_empty_text_fields=False):
 def main():
     """Main function to handle command line arguments and run the export."""
     parser = argparse.ArgumentParser(
-        description='Export inscriptions with graffiti data to CSV'
+        description='Export inscriptions with transcription data to CSV'
     )
     parser.add_argument(
         '--output',
         type=str,
         default=None,
-        help='Output file path (default: inscriptions_with_graffiti_data_TIMESTAMP.csv)'
-    )
-    parser.add_argument(
-        '--include-empty-text-fields',
-        action='store_true',
-        help='Include inscriptions with empty text fields but with related objects (mentioned_person, inscriber)'
+        help='Output file path (default: inscriptions_with_transcription_TIMESTAMP.csv)'
     )
 
     args = parser.parse_args()
 
     # Run the export
     result = export_inscriptions_csv(
-        output_file=args.output,
-        include_empty_text_fields=args.include_empty_text_fields
+        output_file=args.output
     )
 
     if result:
