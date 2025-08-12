@@ -21,7 +21,9 @@ python download_annotations.py inscriptions_TIMESTAMP.csv
 ```
 
 ### `create_dataset.py` - Create ML dataset
-Combines inscription and annotation data into a single CSV for machine learning.
+Combines inscription and annotation data into a single CSV for machine learning. 
+
+**NEW: Each row represents one annotation** (not one inscription), so you get more detailed training data.
 
 **Usage:**
 ```bash
@@ -116,12 +118,40 @@ python create_dataset.py inscriptions_TIMESTAMP.csv
 
 ## What you get
 
-The final dataset includes:
-- `inscription_id` - Database ID
-- `transcription` - The actual text
-- `panel_title` - Surface identifier  
-- `has_annotation` - Whether annotation data exists
-- `num_annotations` - Number of annotation objects
-- `annotation_types` - Types of annotations found
-- `transcription_length` - Length of transcription in characters
-- `transcription_words` - Number of words in transcription
+The final dataset structure has changed! **Each row now represents one annotation** instead of one inscription.
+
+### Inscription CSV (`inscriptions_TIMESTAMP.csv`)
+Contains all 23 inscription fields including:
+- Basic info: `id`, `title`, `transcription`, `panel_title`, `panel_room`
+- Metadata: `type_of_inscription`, `elevation`, `height`, `width`, `language`, `writing_system`
+- Dating: `min_year`, `max_year`
+- Content: `interpretative_edition`, `romanisation`, `inscriber`
+- Translations: `translation_eng`, `translation_ukr`
+- Comments: `comments_eng`, `comments_ukr`
+- Timestamps: `created_at`, `updated_at`
+
+### Combined Dataset (`combined_dataset_TIMESTAMP.csv`)
+**NEW STRUCTURE**: Each row = one annotation + full inscription context
+
+**Columns include:**
+- **All inscription fields** (23 fields from above)
+- **Annotation metadata:**
+  - `annotation_index` - Which annotation this is for the inscription (0, 1, 2...)
+  - `total_annotations_for_inscription` - Total annotations for this inscription
+- **Annotation properties** (dynamically extracted):
+  - `annotation_geometry_type` - Shape type (Point, Polygon, etc.)
+  - `annotation_type` - Type of annotation
+  - `annotation_[property]` - All other annotation properties
+  - `annotation_geometry` - Geometry info
+  - `annotation_has_coordinates` - Boolean for coordinate existence
+  - `annotation_coord_count` - Number of coordinate points
+- **Special cases:**
+  - Inscriptions without annotations: `annotation_index = -1`
+  - Missing files: `annotation_missing = True`
+  - Error cases: `annotation_error = "error message"`
+
+**Benefits:**
+- More training examples (5 annotations = 5 rows instead of 1)
+- Individual annotation analysis
+- Full inscription context for each annotation
+- Ready for predicting annotation properties

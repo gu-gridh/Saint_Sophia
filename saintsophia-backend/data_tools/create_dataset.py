@@ -25,46 +25,68 @@ def create_dataset(csv_filename):
         
         for row in reader:
             inscription_id = row['id']
-            transcription = row['transcription']
-            panel_title = row['panel_title']
             
             # Check if annotation file exists
             annotation_file = f"annotations/annotation_{inscription_id}.json"
-            has_annotation = os.path.exists(annotation_file)
             
-            num_annotations = 0
-            annotation_types = []
-            
-            if has_annotation:
+            if os.path.exists(annotation_file):
                 try:
                     with open(annotation_file, 'r', encoding='utf-8') as af:
                         annotation_data = json.load(af)
                         
-                        if isinstance(annotation_data, list):
-                            num_annotations = len(annotation_data)
-                            # Extract annotation types
-                            for item in annotation_data:
-                                if isinstance(item, dict) and 'properties' in item:
-                                    if 'type' in item['properties']:
-                                        annotation_types.append(item['properties']['type'])
-                        else:
-                            num_annotations = 1
-                            if isinstance(annotation_data, dict) and 'properties' in annotation_data:
-                                if 'type' in annotation_data['properties']:
-                                    annotation_types.append(annotation_data['properties']['type'])
+                        # Handle both single annotation and list of annotations
+                        annotations = annotation_data if isinstance(annotation_data, list) else [annotation_data]
+                        
+                        # Create one row per annotation
+                        for i, annotation in enumerate(annotations):
+                            # Start with all inscription fields
+                            dataset_entry = dict(row)
+                            
+                            # Add annotation-specific fields
+                            dataset_entry['annotation_index'] = i
+                            dataset_entry['total_annotations_for_inscription'] = len(annotations)
+                            
+                            # Extract annotation properties
+                            if isinstance(annotation, dict):
+                                # Add raw annotation data
+                                dataset_entry['annotation_geometry_type'] = annotation.get('type', '')
+                                
+                                # Extract properties if they exist
+                                props = annotation.get('properties', {})
+                                for prop_key, prop_value in props.items():
+                                    dataset_entry[f'annotation_{prop_key}'] = str(prop_value) if prop_value is not None else ''
+                                
+                                # Extract geometry info
+                                geometry = annotation.get('geometry', {})
+                                dataset_entry['annotation_geometry'] = geometry.get('type', '')
+                                
+                                # Add coordinates info (simplified)
+                                coords = geometry.get('coordinates', [])
+                                if coords:
+                                    dataset_entry['annotation_has_coordinates'] = True
+                                    if isinstance(coords, list) and len(coords) > 0:
+                                        dataset_entry['annotation_coord_count'] = len(coords) if isinstance(coords[0], list) else 1
+                                else:
+                                    dataset_entry['annotation_has_coordinates'] = False
+                                    dataset_entry['annotation_coord_count'] = 0
+                            
+                            dataset.append(dataset_entry)
+                            
                 except Exception as e:
                     print(f"  Warning: Could not read annotation file for inscription {inscription_id}: {e}")
-            
-            dataset.append({
-                'inscription_id': inscription_id,
-                'transcription': transcription,
-                'panel_title': panel_title,
-                'has_annotation': has_annotation,
-                'num_annotations': num_annotations,
-                'annotation_types': '; '.join(set(annotation_types)) if annotation_types else '',
-                'transcription_length': len(transcription) if transcription else 0,
-                'transcription_words': len(transcription.split()) if transcription else 0
-            })
+                    # Add inscription without annotation data
+                    dataset_entry = dict(row)
+                    dataset_entry['annotation_index'] = -1
+                    dataset_entry['total_annotations_for_inscription'] = 0
+                    dataset_entry['annotation_error'] = str(e)
+                    dataset.append(dataset_entry)
+            else:
+                # Add inscription without annotation data
+                dataset_entry = dict(row)
+                dataset_entry['annotation_index'] = -1
+                dataset_entry['total_annotations_for_inscription'] = 0
+                dataset_entry['annotation_missing'] = True
+                dataset.append(dataset_entry)
     
     if not dataset:
         print("No data to process")
@@ -79,19 +101,32 @@ def create_dataset(csv_filename):
         writer.writeheader()
         writer.writerows(dataset)
     
-    print(f"✓ Combined dataset saved as {dataset_filename}")
+    print(f"Combined dataset saved as {dataset_filename}")
     
     # Print summary
-    total = len(dataset)
-    with_annotations = len([d for d in dataset if d['has_annotation']])
-    total_annotations = sum(d['num_annotations'] for d in dataset)
+    total_rows = len(dataset)
+    inscriptions_with_annotations = len(set(d['id'] for d in dataset if d.get('annotation_index', -1) >= 0))
+    total_inscriptions = len(set(d['id'] for d in dataset))
+    annotation_rows = len([d for d in dataset if d.get('annotation_index', -1) >= 0])
     
     print(f"\nDataset summary:")
-    print(f"   Total inscriptions: {total}")
-    print(f"   With annotations: {with_annotations} ({with_annotations/total*100:.1f}%)")
-    print(f"   Total annotation objects: {total_annotations}")
-    print(f"   Average transcription length: {sum(d['transcription_length'] for d in dataset)/total:.1f} characters")
+    print(f"Total rows (one per annotation): {total_rows}")
+    print(f"Total unique inscriptions: {total_inscriptions}")
+    print(f"Inscriptions with annotations: {inscriptions_with_annotations}")
+    print(f"Rows with annotation data: {annotation_rows}")
+    if total_inscriptions > 0:
+        print(f"Coverage: {inscriptions_with_annotations/total_inscriptions*100:.1f}% inscriptions have annotations")
     
+    # Show some annotation types if available
+    annotation_types = set()
+    for d in dataset:
+        for key, value in d.items():
+            if key.startswith('annotation_type') and value:
+                annotation_types.add(value)
+    
+    if annotation_types:
+        print(f"Annotation types found: {', '.join(sorted(annotation_types))}")
+
     return True
 
 

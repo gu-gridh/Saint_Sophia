@@ -32,7 +32,7 @@ def test_api():
             
             # Show first few lines
             print("\nSample data:")
-            print(json.dumps(data, indent=2, ensure_ascii=False)[:500] + "...")
+            print(json.dumps(data, indent=2, ensure_ascii=False)[:500] )
             
         elif response.status_code == 404:
             print("No annotation found for this surface (this is normal for some surfaces)")
