@@ -23,10 +23,10 @@ def download_annotation(surface_id):
         elif response.status_code == 404:
             return None  # No annotation found
         else:
-            print(f"    Error {response.status_code} for surface {surface_id}")
+            print(f"Error {response.status_code} for surface {surface_id}")
             return None
     except Exception as e:
-        print(f"    Request failed for {surface_id}: {e}")
+        print(f"Request failed for {surface_id}: {e}")
         return None
 
 
@@ -56,11 +56,11 @@ def download_annotations(csv_filename):
             panel_title = row['panel_title']
             
             if not panel_title:
-                print(f"  Inscription {inscription_id}: No panel title")
+                print(f"Inscription {inscription_id}: No panel title")
                 no_panel += 1
                 continue
             
-            print(f"  Inscription {inscription_id} → Surface {panel_title}", end="")
+            print(f"Inscription {inscription_id} → Surface {panel_title}", end="")
             
             annotation_data = download_annotation(panel_title)
             
@@ -73,19 +73,19 @@ def download_annotations(csv_filename):
                     json.dump(annotation_data, af, indent=2, ensure_ascii=False)
                 
                 num_items = len(annotation_data) if isinstance(annotation_data, list) else 1
-                print(f" ✓ ({num_items} annotation(s))")
+                print(f"({num_items} annotation(s))")
                 successful += 1
             else:
-                print(" ✗ (no annotation)")
+                print("(no annotation)")
                 failed += 1
             
             time.sleep(0.5)  # Be nice to the server
     
     print(f"\nDownload summary:")
-    print(f"  ✓ Successful: {successful}")
-    print(f"  ✗ Failed/No annotation: {failed}")
-    print(f"  ⚠ No panel title: {no_panel}")
-    print(f"  📁 Files saved in '{output_dir}/' folder")
+    print(f"Successful: {successful}")
+    print(f"Failed/No annotation: {failed}")
+    print(f"No panel title: {no_panel}")
+    print(f"Files saved in '{output_dir}/' folder")
     
     return successful > 0
 
@@ -101,6 +101,6 @@ if __name__ == "__main__":
     
     if success:
         print(f"\nNext step: Create combined dataset:")
-        print(f"  python create_dataset.py {csv_file}")
+        print(f"python create_dataset.py {csv_file}")
     else:
         print("\nNo annotations downloaded.")
