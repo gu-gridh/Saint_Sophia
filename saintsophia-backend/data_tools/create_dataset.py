@@ -87,10 +87,10 @@ def create_dataset(csv_filename):
     total_annotations = sum(d['num_annotations'] for d in dataset)
     
     print(f"\nDataset summary:")
-    print(f"  📊 Total inscriptions: {total}")
-    print(f"  🏷️  With annotations: {with_annotations} ({with_annotations/total*100:.1f}%)")
-    print(f"  📍 Total annotation objects: {total_annotations}")
-    print(f"  📝 Average transcription length: {sum(d['transcription_length'] for d in dataset)/total:.1f} characters")
+    print(f"   Total inscriptions: {total}")
+    print(f"   With annotations: {with_annotations} ({with_annotations/total*100:.1f}%)")
+    print(f"   Total annotation objects: {total_annotations}")
+    print(f"   Average transcription length: {sum(d['transcription_length'] for d in dataset)/total:.1f} characters")
     
     return True
 
@@ -105,6 +105,6 @@ if __name__ == "__main__":
     success = create_dataset(csv_file)
     
     if success:
-        print(f"\n🎉 All done! Your ML dataset is ready.")
+        print(f"\n All done! Your ML dataset is ready.")
     else:
         print("\nFailed to create dataset.")

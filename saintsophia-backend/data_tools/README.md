@@ -39,6 +39,26 @@ python test_api.py
 ### `collect_data.py` - All-in-one script
 Does all three steps above in one command (if you prefer that).
 
+### `upload_cooments.py` - Update database from CSV
+Updates inscription data in the database from a CSV file. Automatically detects CSV columns and matches them to model fields.
+
+**Usage:**
+```bash
+python upload_cooments.py data.csv
+```
+
+**CSV Requirements:**
+- Must have an `id` column with inscription IDs
+- Column names must match model field names exactly
+- Common fields: `transcription`, `comments_eng`, `comments_ukr`, `interpretative_edition`, `romanisation`
+
+**Example CSV:**
+```csv
+id,transcription,comments_eng,romanisation
+123,"Ancient text","Good condition","Romanized version"
+124,"More text","Partially damaged","Another romanization"
+```
+
 ## Step-by-step workflow
 
 ```bash
