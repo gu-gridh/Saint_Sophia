@@ -73,7 +73,7 @@ def download_annotations(csv_filename):
                     json.dump(annotation_data, af, indent=2, ensure_ascii=False)
                 
                 num_items = len(annotation_data) if isinstance(annotation_data, list) else 1
-                print(f"({num_items} annotation(s))")
+                # print(f"({num_items} annotation(s))")
                 successful += 1
             else:
                 print("(no annotation)")
