@@ -39,6 +39,23 @@ python test_api.py
 ### `collect_data.py` - All-in-one script
 Does all three steps above in one command (if you prefer that).
 
+**Usage:**
+```bash
+python collect_data.py
+```
+
+**What it does:**
+1. Exports inscriptions with transcription data
+2. Downloads annotation data from API for each inscription
+3. Creates a combined ML-ready dataset
+
+**Output:**
+- `inscriptions_TIMESTAMP.csv` - Raw inscription data
+- `annotations/` folder - JSON files with annotation data  
+- `combined_dataset_TIMESTAMP.csv` - Ready for ML training
+
+**Use this if:** You want everything done automatically in one command.
+
 ### `upload_cooments.py` - Update database from CSV
 Updates inscription data in the database from a CSV file. Automatically detects CSV columns and matches them to model fields.
 
@@ -57,6 +74,25 @@ python upload_cooments.py data.csv
 id,transcription,comments_eng,romanisation
 123,"Ancient text","Good condition","Romanized version"
 124,"More text","Partially damaged","Another romanization"
+```
+
+## Quick Start
+
+**Want everything in one command?**
+```bash
+python collect_data.py
+```
+
+**Want to control each step?**
+```bash
+python export_inscriptions.py
+python download_annotations.py inscriptions_*.csv  
+python create_dataset.py inscriptions_*.csv
+```
+
+**Want to update the database?**
+```bash
+python upload_cooments.py your_data.csv
 ```
 
 ## Step-by-step workflow
