@@ -40,18 +40,45 @@ def export_inscriptions():
     with open(csv_filename, 'w', newline='', encoding='utf-8') as csvfile:
         writer = csv.writer(csvfile)
         
-        # Write header
-        writer.writerow(['id', 'transcription', 'panel_title'])
+        # Define all fields to export
+        headers = [
+            'id', 'title', 'position_on_surface', 'panel_title', 'panel_room',
+            'type_of_inscription', 'elevation', 'height', 'width', 'language', 
+            'writing_system', 'min_year', 'max_year', 'transcription', 
+            'interpretative_edition', 'romanisation', 'inscriber', 
+            'translation_eng', 'translation_ukr', 'comments_eng', 'comments_ukr'
+        ]
         
-        # Write data
+        writer.writerow(headers)
+        
+        # Write data for each inscription
         for inscription in inscriptions:
-            writer.writerow([
+            row = [
                 inscription.id,
-                inscription.transcription,
-                inscription.panel.title if inscription.panel else ''
-            ])
+                inscription.title or '',
+                inscription.position_on_surface or '',
+                inscription.panel.title if inscription.panel else '',
+                inscription.panel.room if inscription.panel else '',
+                str(inscription.type_of_inscription) if inscription.type_of_inscription else '',
+                inscription.elevation or '',
+                inscription.height or '',
+                inscription.width or '',
+                str(inscription.language) if inscription.language else '',
+                str(inscription.writing_system) if inscription.writing_system else '',
+                inscription.min_year or '',
+                inscription.max_year or '',
+                inscription.transcription or '',
+                inscription.interpretative_edition or '',
+                inscription.romanisation or '',
+                str(inscription.inscriber) if inscription.inscriber else '',
+                inscription.translation_eng or '',
+                inscription.translation_ukr or '',
+                inscription.comments_eng or '',
+                inscription.comments_ukr or '',
+            ]
+            writer.writerow(row)
     
-    print(f"✓ Exported to {csv_filename}")
+    print(f"Exported to {csv_filename}")
     return csv_filename
 
 
@@ -66,16 +93,16 @@ def download_annotation(surface_id):
         elif response.status_code == 404:
             return None  # No annotation found
         else:
-            print(f"  Error {response.status_code} for surface {surface_id}")
+            print(f"Error {response.status_code} for surface {surface_id}")
             return None
     except Exception as e:
-        print(f"  Request failed for {surface_id}: {e}")
+        print(f"Request failed for {surface_id}: {e}")
         return None
 
 
 def download_all_annotations(csv_filename):
     """Download annotations for all inscriptions in CSV."""
-    print("\nDownloading annotations...")
+    print("\nDownloading annotations.")
     
     # Create output directory
     output_dir = 'annotations'
@@ -93,12 +120,12 @@ def download_all_annotations(csv_filename):
             panel_title = row['panel_title']
             
             if not panel_title:
-                print(f"  No panel title for inscription {inscription_id}")
+                print(f"No panel title for inscription {inscription_id}")
                 failed += 1
                 continue
-            
-            print(f"  Downloading annotation for inscription {inscription_id} (surface {panel_title})")
-            
+
+            print(f"Downloading annotation for inscription {inscription_id} (surface {panel_title})")
+
             annotation_data = download_annotation(panel_title)
             
             if annotation_data:
@@ -109,10 +136,10 @@ def download_all_annotations(csv_filename):
                 with open(filepath, 'w', encoding='utf-8') as af:
                     json.dump(annotation_data, af, indent=2, ensure_ascii=False)
                 
-                print(f"    ✓ Saved {filename}")
+                print(f"Saved {filename}")
                 successful += 1
             else:
-                print(f"    ✗ No annotation found")
+                print(f"No annotation found")
                 failed += 1
             
             time.sleep(0.5)  # Be nice to the server
@@ -148,14 +175,15 @@ def create_simple_dataset(csv_filename):
                 except:
                     pass
             
-            dataset.append({
-                'inscription_id': inscription_id,
-                'transcription': transcription,
-                'panel_title': panel_title,
+            # Create dataset entry with all original fields plus annotation info
+            dataset_entry = dict(row)  # Copy all original fields
+            dataset_entry.update({
                 'has_annotation': has_annotation,
                 'num_annotations': num_annotations,
                 'transcription_length': len(transcription) if transcription else 0
             })
+            
+            dataset.append(dataset_entry)
     
     # Save combined dataset
     timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
@@ -167,7 +195,7 @@ def create_simple_dataset(csv_filename):
             writer.writeheader()
             writer.writerows(dataset)
     
-    print(f"✓ Combined dataset saved as {dataset_filename}")
+    print(f"Combined dataset saved as {dataset_filename}")
     
     # Print summary
     total = len(dataset)

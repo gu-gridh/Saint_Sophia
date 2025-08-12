@@ -46,8 +46,7 @@ def export_inscriptions():
             'type_of_inscription', 'elevation', 'height', 'width', 'language', 
             'writing_system', 'min_year', 'max_year', 'transcription', 
             'interpretative_edition', 'romanisation', 'inscriber', 
-            'translation_eng', 'translation_ukr', 'comments_eng', 'comments_ukr',
-            'created_at', 'updated_at'
+            'translation_eng', 'translation_ukr', 'comments_eng', 'comments_ukr'
         ]
         
         writer.writerow(headers)
