@@ -60,7 +60,7 @@ def download_annotations(csv_filename):
                 no_panel += 1
                 continue
             
-            print(f"Inscription {inscription_id} → Surface {panel_title}", end="")
+            # print(f"Inscription {inscription_id} → Surface {panel_title}", end="")
             
             annotation_data = download_annotation(panel_title)
             
@@ -101,6 +101,6 @@ if __name__ == "__main__":
     
     if success:
         print(f"\nNext step: Create combined dataset:")
-        print(f"python create_dataset.py {csv_file}")
+        # print(f"python create_dataset.py {csv_file}")
     else:
         print("\nNo annotations downloaded.")
