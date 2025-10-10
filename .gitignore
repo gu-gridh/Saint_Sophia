@@ -160,3 +160,69 @@ cython_debug/
 #.idea/
 saintsophia-backend/saintsophia/settings_local.py
 configs
+
+# Data folder and files
+#  This is a general rule for ignoring data files and directories.
+#  Adjust the patterns as needed for your project.
+#  For example, if you have a specific data directory or file types you want to ignore
+
+# SOPHIA Training Data - exclude large datasets from git
+sophia-epigraphic-ai/data/
+sophia-epigraphic-ai/checkpoints/
+sophia-epigraphic-ai/logs/
+sophia-epigraphic-ai/runs/
+sophia-epigraphic-ai/wandb/
+
+# Original inscription images and annotations (too large for git)
+original/
+inscriptions_annotations/
+data/
+
+# Dataset files - keep structure but exclude large data
+*.csv
+*.tsv
+*.json
+*.xml
+*.yaml
+
+# Model files and training outputs
+*.pth
+*.pt
+*.ckpt
+*.h5
+*.pkl
+*.pickle
+
+# Image files
+*.jpg
+*.jpeg
+*.png
+*.bmp
+*.tiff
+*.tif
+*.gif
+
+# Video files  
+*.mp4
+*.avi
+*.mov
+*.mkv
+
+# Archive files
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# Large temporary files
+*.tmp
+*.temp
+*.log
+
+# Data directories
+.data
+data/*
+datasets/
+processed/
+raw/
+
