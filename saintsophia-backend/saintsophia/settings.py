@@ -102,10 +102,14 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "saintsophia.urls"
 
+# Find the TEMPLATES setting and make sure it includes your templates directory
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(str(BASE_DIR))],
+        'DIRS': [
+            BASE_DIR / 'templates',  # Add this line if it's not there
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -117,6 +121,7 @@ TEMPLATES = [
         },
     },
 ]
+
 WSGI_APPLICATION = "saintsophia.wsgi.application"
 
 X_FRAME_OPTIONS = "SAMEORIGIN"
