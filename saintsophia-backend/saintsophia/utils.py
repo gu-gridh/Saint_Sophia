@@ -129,26 +129,46 @@ def get_model_urls(app_label: str, base_url: str, exclude: List[str]) -> List[UR
     return patterns
 
 
-
-def build_app_api_documentation(app_name: str, endpoint: str, template="redoc", default_version="v1", license="BSD License", **kwargs):
-
-
+def build_app_api_documentation(app_name: str = None, endpoint: str = "api", template="redoc", default_version="v1", license="BSD License", **kwargs):
+    """
+    Build API documentation endpoints.
+    
+    Args:
+        app_name: Optional app name for the schema title. If None, uses "API"
+        endpoint: Base endpoint path. Defaults to "api"
+        template: Template to use (redoc, swagger, etc.)
+        default_version: API version
+        license: License string
+    
+    Returns:
+        List of URL patterns for schema and documentation
+    """
+    
+    # Use generic title if no app_name provided
+    title = f"{app_name.capitalize()} API" if app_name else "API Documentation"
+    
+    # Determine urlconf - if app_name provided, use app-specific urls, otherwise use root
+    urlconf = f"apps.{app_name}.urls" if app_name else None
+    
     schema = path(f'{endpoint}/schema/', 
         get_schema_view(
-            title=f"{app_name.capitalize()}",
-            description=f"Schema for the {app_name.capitalize()} API at the Centre for Digital Humanities",
-            version="1.0.0",
-            urlconf=f"apps.{app_name}.urls"
+            title=title,
+            description=f"Schema for the {title} at the Centre for Digital Humanities",
+            version=default_version,
+            urlconf=urlconf
         ), 
-        name=f'{app_name}-openapi-schema'
+        name='openapi-schema' if not app_name else f'{app_name}-openapi-schema'
     )
-
+    
     documentation = path(f'{endpoint}/documentation/', 
         TemplateView.as_view(
-            template_name='templates/redoc.html',
-            extra_context={'schema_url': f'{app_name}-openapi-schema'},
+            template_name='redoc.html',
+            extra_context={
+                'schema_url': 'openapi-schema' if not app_name else f'{app_name}-openapi-schema'
+            },
         ), 
-        name=f'{app_name}-documentation')
+        name='api-documentation' if not app_name else f'{app_name}-documentation'
+    )
 
     return [schema, documentation]
 
