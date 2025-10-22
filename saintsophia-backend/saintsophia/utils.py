@@ -153,7 +153,7 @@ def build_app_api_documentation(app_name: str = None, endpoint: str = "api", tem
     schema = path(f'{endpoint}/schema/', 
         get_schema_view(
             title=title,
-            description=f"Schema for the {title} at the Centre for Digital Humanities",
+            description=f"Schema for the {title} at the Gothenburg Research Infrastructure in Digital Humanities",
             version=default_version,
             urlconf=urlconf
         ), 
