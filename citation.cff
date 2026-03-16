@@ -1,0 +1,27 @@
+# This CITATION.cff file was generated with Zotero.
+
+cff-version: 1.2.0
+message: >-
+  If you use this software, please cite it using the metadata from this file.
+title:  >-
+  Saint Sophia’s Inscriptions
+abstract: A backend app for the Saint Sophia's Inscriptions portal.
+type: software
+version: v1.6
+url: https://saintsophia.dh.gu.se/
+authors: 
+  - family-names: Westin
+    given-names: Jonathan
+  - family-names: Almevik
+    given-names: Gunnar
+  - family-names: Bridge
+    given-names: Tristan
+  - family-names: Tomasini
+    given-names: Matteo
+  - family-names: Karimi
+    given-names: Aram
+  - family-names: Green
+    given-names: Ashely
+  - family-names: Alfter
+    given-names: David
+date-released: 2026
